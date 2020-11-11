@@ -79,9 +79,4 @@ public class TriangleChecker {
     }
     return TriangleType.NONE;
   }
-
-
-
-
-
 }
