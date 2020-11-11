@@ -9,7 +9,6 @@ public class TriangleChecker {
     EQUILATERAL // Gleichseitig
   }
 
-
   public static void main(String[] args) {
     Scanner s = new Scanner(System.in);
     System.out.println("Geben Sie die Seitenlängen ein.");
@@ -45,10 +44,44 @@ public class TriangleChecker {
     }
   }
 
+  //Check das alle 3 Werte positiv sind
+  public static boolean checkIfPositive (float a, float b, float c) {
+
+    if (a >= 0 && b>= 0 && c>= 0)
+    return true;
+    else
+    return false;
+  }
+  
+  //Check das keine Seite eine Überlänge hat
+  public static boolean checkIfAccurateLength (float a, float b, float c) {
+
+    if ((a + b >= c) && (b + c >= a) && (a + c >= b))
+    return true;
+    else
+    return false;
+  }
+
   // Analyse der Dreiecksart
   public static TriangleType checkTriangle(float a, float b, float c) {
+    if (checkIfAccurateLength(a,b,c) && checkIfPositive(a,b,c)) {
+     
+    if (a == b || b == c || a == c) {
+    
+    if (a == b && b == c) {
+    return TriangleType.EQUILATERAL;
+    }
+    else {
+    return TriangleType.ISOSCELES;
+    }
+    }
+    return TriangleType.NORMAL;
+    }
     return TriangleType.NONE;
   }
+
+
+
 
 
 }

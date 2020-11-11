@@ -14,8 +14,22 @@ public class TriangleCheckerTest {
         // Act
         TriangleChecker.TriangleType type = TriangleChecker.checkTriangle(a, b, c);
 
-        // Assert
+        // Test: Normal
         assertEquals(TriangleChecker.TriangleType.NORMAL, type);
+
+        // Test: Gleichseitig
+        assertEquals(TriangleChecker.TriangleType.EQUILATERAL, TriangleChecker.checkTriangle(3, 3, 3));
+
+        // Test: Kein Dreieck (wenn eine Seite zu lang ist oder bei negativen Werten)
+         assertEquals(TriangleChecker.TriangleType.NONE, TriangleChecker.checkTriangle(-3, 3, 3));
+         assertEquals(TriangleChecker.TriangleType.NONE, TriangleChecker.checkTriangle(3, -3, 3));
+         assertEquals(TriangleChecker.TriangleType.NONE, TriangleChecker.checkTriangle(3, 3, -3));
+         assertEquals(TriangleChecker.TriangleType.NONE, TriangleChecker.checkTriangle(40, 3, 3));
+         assertEquals(TriangleChecker.TriangleType.NONE, TriangleChecker.checkTriangle(3, 40, 3));
+         assertEquals(TriangleChecker.TriangleType.NONE, TriangleChecker.checkTriangle(3, 3, 40));
+
+         //Test: Gleichschenklig
+         assertEquals(TriangleChecker.TriangleType.ISOSCELES, TriangleChecker.checkTriangle(3, 3, 6));
 
     }
 
